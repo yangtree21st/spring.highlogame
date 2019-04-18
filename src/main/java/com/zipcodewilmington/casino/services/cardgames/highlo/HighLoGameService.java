@@ -4,6 +4,7 @@ import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
 import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoGameRepository;
 import com.zipcodewilmington.springutils.AbstractService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 @Service
 public class HighLoGameService extends AbstractService<HighLoGame, Long> {
+    @Autowired
     public HighLoGameService(HighLoGameRepository repository) {
         super(repository);
     }
