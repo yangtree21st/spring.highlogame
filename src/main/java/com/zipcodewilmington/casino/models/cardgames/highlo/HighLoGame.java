@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-public class HighLowGame {
+public class HighLoGame {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -18,11 +18,11 @@ public class HighLowGame {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HighLoPlayer> playerList;
 
-    public HighLowGame() {
+    public HighLoGame() {
         this(null, new Deck(), new ArrayList<>());
     }
 
-    public HighLowGame(Long id, Deck deck, List<HighLoPlayer> playerList) {
+    public HighLoGame(Long id, Deck deck, List<HighLoPlayer> playerList) {
         this.id = id;
         this.deck = deck;
         this.playerList = playerList;

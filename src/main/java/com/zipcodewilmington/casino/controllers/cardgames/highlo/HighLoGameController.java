@@ -1,6 +1,6 @@
 package com.zipcodewilmington.casino.controllers.cardgames.highlo;
 
-import com.zipcodewilmington.casino.models.cardgames.highlo.HighLowGame;
+import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.services.cardgames.highlo.HighLoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,27 +23,27 @@ public class HighLoGameController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<HighLowGame> show(@PathVariable Long id) {
+    public ResponseEntity<HighLoGame> show(@PathVariable Long id) {
         return new ResponseEntity<>(service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/")
-    public ResponseEntity<HighLowGame> create(@RequestBody HighLowGame highLowGame) {
-        return new ResponseEntity<>(service.create(highLowGame), HttpStatus.CREATED);
+    public ResponseEntity<HighLoGame> create(@RequestBody HighLoGame highLoGame) {
+        return new ResponseEntity<>(service.create(highLoGame), HttpStatus.CREATED);
     }
 
     @PostMapping("/new")
-    public ResponseEntity<HighLowGame> create() {
+    public ResponseEntity<HighLoGame> create() {
         return new ResponseEntity<>(service.create(), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HighLowGame> update(@PathVariable Long id, @RequestBody HighLowGame highLowGame) {
-        return new ResponseEntity<>(service.update(id, highLowGame), HttpStatus.OK);
+    public ResponseEntity<HighLoGame> update(@PathVariable Long id, @RequestBody HighLoGame highLoGame) {
+        return new ResponseEntity<>(service.update(id, highLoGame), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HighLowGame> destroy(@PathVariable Long id) {
+    public ResponseEntity<HighLoGame> destroy(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }
