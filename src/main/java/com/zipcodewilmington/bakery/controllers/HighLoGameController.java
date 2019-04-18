@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 //@CrossOrigin(IPAddress)
 
-public class HiLoGameController {
+public class HighLoGameController {
 
     private HiLoGameService service;//service is always Singleton,is a bean.
 
     @Autowired// Telling IOC to inject Beans.Dependency Injection//it updated in moc database.
-    public HiLoGameController(HiLoGameService service) {
+    public HighLoGameController(HiLoGameService service) {
         this.service = service;
     }
 

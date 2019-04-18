@@ -22,7 +22,7 @@ import java.util.Optional;
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-public class HiLoGameControllerTest {
+public class HighLoGameControllerTest {
 
     @Autowired
     private MockMvc mvc;
