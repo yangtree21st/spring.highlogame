@@ -23,11 +23,6 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
     }
 
     public HighLoGame create() {
-        HighLoGame newGame = new HighLoGame();
-        Deck newDeck = new Deck();
-        newDeck.setCardList(new ArrayList<>());
-        newGame.setDeck(newDeck);
-        newGame.setPlayerList(new ArrayList<>());
-        return super.create(newGame);
+        return super.create(new HighLoGame());
     }
 }
