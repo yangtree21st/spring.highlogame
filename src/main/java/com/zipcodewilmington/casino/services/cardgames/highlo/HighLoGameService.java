@@ -2,6 +2,7 @@ package com.zipcodewilmington.casino.services.cardgames.highlo;
 
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
+import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoGameRepository;
 import com.zipcodewilmington.springutils.AbstractService;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 @Service
 public class HighLoGameService extends AbstractService<HighLoGame, Long> {
-    public HighLoGameService(CrudRepository<HighLoGame, Long> repository) {
+    public HighLoGameService(HighLoGameRepository repository) {
         super(repository);
     }
 
