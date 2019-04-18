@@ -1,10 +1,18 @@
 package com.zipcodewilmington.casino.models.cardgames.utils;
 
+import javax.persistence.*;
+import java.util.List;
 import java.util.Stack;
 
-public class Deck {
 
-    Stack<Card> cardStack;
+@Entity
+public class Deck {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    List<Card> cardStack;
 
     public Deck() {
     }
@@ -13,11 +21,11 @@ public class Deck {
         this.cardStack = cardStack;
     }
 
-    public Stack<Card> getCardStack() {
+    public List<Card> getCardStack() {
         return cardStack;
     }
 
-    public void setCardStack(Stack<Card> cardStack) {
+    public void setCardStack(List<Card> cardStack) {
         this.cardStack = cardStack;
     }
 }

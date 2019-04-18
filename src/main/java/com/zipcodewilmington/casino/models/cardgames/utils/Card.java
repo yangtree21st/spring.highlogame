@@ -1,6 +1,13 @@
 package com.zipcodewilmington.casino.models.cardgames.utils;
 
+import javax.persistence.*;
+
+@Entity
 public class Card {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private final Rank rank;
     private final Suit suit;
 
@@ -19,6 +26,14 @@ public class Card {
 
     public int getValue() {
         return rank.getValue();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String toString() {

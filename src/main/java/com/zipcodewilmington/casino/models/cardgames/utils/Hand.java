@@ -9,7 +9,7 @@ public class Hand {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     List<Card> cardList;
 
     public Hand() {

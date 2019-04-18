@@ -3,10 +3,7 @@ package com.zipcodewilmington.casino.models.cardgames.highlo;
 
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 @Entity
 public class HighLowGame {
@@ -14,13 +11,16 @@ public class HighLowGame {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @OneToOne(fetch = FetchType.LAZY)
     Deck deck;
-    List<HighLowGame> playerList;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    List<HighLoPlayer> playerList;
 
     public HighLowGame() {
     }
 
-    public HighLowGame(Long id, Deck deck, List<HighLowGame> playerList) {
+    public HighLowGame(Long id, Deck deck, List<HighLoPlayer> playerList) {
         this.id = id;
         this.deck = deck;
         this.playerList = playerList;
@@ -42,11 +42,11 @@ public class HighLowGame {
         this.deck = deck;
     }
 
-    public List<HighLowGame> getPlayerList() {
+    public List<HighLoPlayer> getPlayerList() {
         return playerList;
     }
 
-    public void setPlayerList(List<HighLowGame> playerList) {
+    public void setPlayerList(List<HighLoPlayer> playerList) {
         this.playerList = playerList;
     }
 
