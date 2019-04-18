@@ -23,7 +23,7 @@ public class HighLoPlayerController {
     }
     @GetMapping(name = "/hiloplayers/{id}")
     public ResponseEntity<HighLoPlayer>  show(@PathVariable Long accountId) {
-        return new ResponseEntity<>(highLoPlayerService.show(accountId), HttpStatus.OK);
+        return new ResponseEntity<>(highLoPlayerService.read(accountId), HttpStatus.OK);
     }
 
     @PutMapping(name = "/hiloplayers/{id}")
