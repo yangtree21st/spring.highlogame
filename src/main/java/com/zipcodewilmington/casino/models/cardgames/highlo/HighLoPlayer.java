@@ -15,8 +15,8 @@ public class HighLoPlayer extends CardPlayer {
     String name;
 
     @OneToOne
-    Hand hand
-            ;
+    Hand hand;
+
     @OneToOne
     Account account;
 
