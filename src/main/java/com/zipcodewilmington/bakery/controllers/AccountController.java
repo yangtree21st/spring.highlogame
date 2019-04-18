@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This class exposes endpoints to manipulate account entities
+ */
 @Controller
 public class AccountController {
 
