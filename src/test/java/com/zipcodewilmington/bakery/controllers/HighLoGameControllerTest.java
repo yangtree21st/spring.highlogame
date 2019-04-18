@@ -1,7 +1,7 @@
 package com.zipcodewilmington.bakery.controllers;
 
-import com.zipcodewilmington.bakery.models.HighLowGame;
-import com.zipcodewilmington.bakery.repositories.HighLoGameRepository;
+import com.zipcodewilmington.bakery.models.cardgames.highlo.HighLowGame;
+import com.zipcodewilmington.bakery.repositories.cardgames.highlo.HighLoGameRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;

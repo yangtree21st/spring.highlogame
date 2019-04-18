@@ -1,6 +1,6 @@
-package com.zipcodewilmington.bakery.repositories;
+package com.zipcodewilmington.bakery.repositories.cardgames.highlo;
 
-import com.zipcodewilmington.bakery.models.HighLoPlayer;
+import com.zipcodewilmington.bakery.models.cardgames.highlo.HighLoPlayer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.zipcodewilmington.bakery.controllers;
+package com.zipcodewilmington.bakery.controllers.cardgames.highlo;
 
-import com.zipcodewilmington.bakery.models.HighLowGame;
-import com.zipcodewilmington.bakery.services.HighLoGameService;
+import com.zipcodewilmington.bakery.models.cardgames.highlo.HighLowGame;
+import com.zipcodewilmington.bakery.services.cardgames.highlo.HighLoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

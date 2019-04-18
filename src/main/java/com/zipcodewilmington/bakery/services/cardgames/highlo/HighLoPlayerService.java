@@ -1,9 +1,9 @@
-package com.zipcodewilmington.bakery.services;
+package com.zipcodewilmington.bakery.services.cardgames.highlo;
 
-import com.zipcodewilmington.bakery.models.HighLowGame;
-import com.zipcodewilmington.bakery.models.HighLoPlayer;
-import com.zipcodewilmington.bakery.repositories.HighLoGameRepository;
-import com.zipcodewilmington.bakery.repositories.HighLoPlayerRepository;
+import com.zipcodewilmington.bakery.models.cardgames.highlo.HighLowGame;
+import com.zipcodewilmington.bakery.models.cardgames.highlo.HighLoPlayer;
+import com.zipcodewilmington.bakery.repositories.cardgames.highlo.HighLoGameRepository;
+import com.zipcodewilmington.bakery.repositories.cardgames.highlo.HighLoPlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

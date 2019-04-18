@@ -1,4 +1,8 @@
-package com.zipcodewilmington.bakery.models;
+package com.zipcodewilmington.bakery.models.cardgames.highlo;
+
+import com.zipcodewilmington.bakery.models.Account;
+import com.zipcodewilmington.bakery.models.cardgames.CardPlayer;
+import com.zipcodewilmington.bakery.models.cardgames.utils.Hand;
 
 import javax.persistence.*;
 

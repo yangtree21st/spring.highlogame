@@ -1,5 +1,7 @@
-package com.zipcodewilmington.bakery.models;
+package com.zipcodewilmington.bakery.models.cardgames.highlo;
 
+
+import com.zipcodewilmington.bakery.models.cardgames.utils.Deck;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.zipcodewilmington.bakery.models;
+package com.zipcodewilmington.bakery.models.cardgames.utils;
 
 import javax.persistence.Entity;
 
