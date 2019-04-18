@@ -27,5 +27,5 @@ abstract public class AbstractService<EntityType, IdType> implements ServiceInte
     }
 
     @Override
-    abstract public EntityType update(IdType gameId, EntityType newHighLowGame);
+    abstract public EntityType update(IdType id, EntityType newData);
 }

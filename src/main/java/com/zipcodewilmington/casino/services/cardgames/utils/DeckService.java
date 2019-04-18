@@ -14,9 +14,9 @@ public class DeckService extends AbstractService<Deck, Long> {
     }
 
     @Override
-    public Deck update(Long gameId, Deck newHighLowGame) {
-        Deck deck = super.read(gameId);
-        deck.setCardStack(newHighLowGame.getCardStack());
+    public Deck update(Long id, Deck newData) {
+        Deck deck = super.read(id);
+        deck.setCardStack(newData.getCardStack());
         repository.save(deck);
         return deck;
     }
