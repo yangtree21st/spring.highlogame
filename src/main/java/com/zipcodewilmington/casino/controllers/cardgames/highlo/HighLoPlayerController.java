@@ -32,7 +32,7 @@ public class HighLoPlayerController {
     }
 
     @DeleteMapping(name = "/hiloplayers/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Long gameId) {
+    public ResponseEntity<HighLoPlayer> delete(@PathVariable Long gameId) {
         return new ResponseEntity<>(highLoPlayerService.delete(gameId), HttpStatus.OK);
     }
 }
