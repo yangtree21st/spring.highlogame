@@ -10,13 +10,13 @@ import javax.persistence.*;
 public class CardPlayer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @OneToOne
-    Hand hand;
+    private Hand hand;
 
     @OneToOne
-    Account account;
+    private Account account;
 
     public CardPlayer() {
         this(null, new Hand(), new Account());
