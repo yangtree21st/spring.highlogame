@@ -4,20 +4,22 @@ package com.zipcodewilmington.casino.models.cardgames.highlo;
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class HighLowGame {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    Deck deck;
+    private Deck deck;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<HighLoPlayer> playerList;
+    private List<HighLoPlayer> playerList;
 
     public HighLowGame() {
+        this(null, new Deck(), new ArrayList<>());
     }
 
     public HighLowGame(Long id, Deck deck, List<HighLoPlayer> playerList) {
