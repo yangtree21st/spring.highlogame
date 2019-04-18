@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 //@CrossOrigin(IPAddress)
-
+@RequestMapping(value = "games/highlo")
 public class HighLoGameController {
 
     private HighLoGameService service;//service is always Singleton,is a bean.
@@ -21,28 +21,29 @@ public class HighLoGameController {
         this.service = service;
     }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/hilogames/")
-//    public ResponseEntity<Iterable<HiLoGame>> index() {
-//        return new ResponseEntity<>(service.index(), HttpStatus.OK);
-//    }
 
-    @GetMapping("/games/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<HighLowGame> show(@PathVariable Long id) {
-        return new ResponseEntity<HighLowGame>(service.show(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.read(id), HttpStatus.OK);
     }
 
-    @PostMapping("/games")
+    @PostMapping("/")
     public ResponseEntity<HighLowGame> create(@RequestBody HighLowGame highLowGame) {
-        return new ResponseEntity<HighLowGame>(service.create(highLowGame), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.create(highLowGame), HttpStatus.CREATED);
     }
 
-    @PutMapping("/games/{id}")
+    @PostMapping("/new")
+    public ResponseEntity<HighLowGame> create() {
+        return new ResponseEntity<>(service.create(), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
     public ResponseEntity<HighLowGame> update(@PathVariable Long id, @RequestBody HighLowGame highLowGame) {
         return new ResponseEntity<>(service.update(id, highLowGame), HttpStatus.OK);
     }
 
-    @DeleteMapping("/games/{id}")
-    public ResponseEntity<Boolean> destroy(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HighLowGame> destroy(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

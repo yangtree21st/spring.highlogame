@@ -11,10 +11,10 @@ public class HighLowGame {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     Deck deck;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<HighLoPlayer> playerList;
 
     public HighLowGame() {
