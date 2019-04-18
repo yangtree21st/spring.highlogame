@@ -3,7 +3,7 @@ package com.zipcodewilmington.bakery.models;
 import javax.persistence.*;
 
 @Entity
-public class HiLoPlayer extends CardPlayer {
+public class HighLoPlayer extends CardPlayer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +16,11 @@ public class HiLoPlayer extends CardPlayer {
     @OneToOne
     Account account;
 
-    public HiLoPlayer(){
+    public HighLoPlayer(){
 
     }
 
-    public HiLoPlayer(Account account, String name, String name1, Hand hand, Account account1) {
+    public HighLoPlayer(Account account, String name, String name1, Hand hand, Account account1) {
         super(account, name);
         this.name = name1;
         this.hand = hand;

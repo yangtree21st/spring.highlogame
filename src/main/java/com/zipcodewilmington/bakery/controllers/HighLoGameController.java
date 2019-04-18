@@ -1,7 +1,7 @@
 package com.zipcodewilmington.bakery.controllers;
 
-import com.zipcodewilmington.bakery.models.HiLowGame;
-import com.zipcodewilmington.bakery.services.HiLoGameService;
+import com.zipcodewilmington.bakery.models.HighLowGame;
+import com.zipcodewilmington.bakery.services.HighLoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 public class HighLoGameController {
 
-    private HiLoGameService service;//service is always Singleton,is a bean.
+    private HighLoGameService service;//service is always Singleton,is a bean.
 
     @Autowired// Telling IOC to inject Beans.Dependency Injection//it updated in moc database.
-    public HighLoGameController(HiLoGameService service) {
+    public HighLoGameController(HighLoGameService service) {
         this.service = service;
     }
 
@@ -27,18 +27,18 @@ public class HighLoGameController {
 //    }
 
     @GetMapping("/games/{id}")
-    public ResponseEntity<HiLowGame> show(@PathVariable Long id) {
-        return new ResponseEntity<HiLowGame>(service.show(id), HttpStatus.OK);
+    public ResponseEntity<HighLowGame> show(@PathVariable Long id) {
+        return new ResponseEntity<HighLowGame>(service.show(id), HttpStatus.OK);
     }
 
     @PostMapping("/games")
-    public ResponseEntity<HiLowGame> create(@RequestBody HiLowGame hiLowGame) {
-        return new ResponseEntity<HiLowGame>(service.create(hiLowGame), HttpStatus.CREATED);
+    public ResponseEntity<HighLowGame> create(@RequestBody HighLowGame highLowGame) {
+        return new ResponseEntity<HighLowGame>(service.create(highLowGame), HttpStatus.CREATED);
     }
 
     @PutMapping("/games/{id}")
-    public ResponseEntity<HiLowGame> update(@PathVariable Long id, @RequestBody HiLowGame hiLowGame) {
-        return new ResponseEntity<>(service.update(id, hiLowGame), HttpStatus.OK);
+    public ResponseEntity<HighLowGame> update(@PathVariable Long id, @RequestBody HighLowGame highLowGame) {
+        return new ResponseEntity<>(service.update(id, highLowGame), HttpStatus.OK);
     }
 
     @DeleteMapping("/games/{id}")

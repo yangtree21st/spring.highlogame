@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HiLoGameApplication {
+public class HighLoGameApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HiLoGameApplication.class, args);
+        SpringApplication.run(HighLoGameApplication.class, args);
     }
 }

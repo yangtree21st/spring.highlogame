@@ -1,7 +1,7 @@
 package com.zipcodewilmington.bakery.controllers;
 
-import com.zipcodewilmington.bakery.models.HiLowGame;
-import com.zipcodewilmington.bakery.repositories.HiLoGameRepository;
+import com.zipcodewilmington.bakery.models.HighLowGame;
+import com.zipcodewilmington.bakery.repositories.HighLoGameRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -29,14 +29,14 @@ public class HighLoGameControllerTest {
 
 
     @MockBean
-    private HiLoGameRepository repository;
+    private HighLoGameRepository repository;
 
     @Test
     public void testShow() throws Exception {
         Long givenId = 1L;
         BDDMockito
                 .given(repository.findById(givenId))
-                .willReturn(Optional.of(new HiLowGame(null, null, null)));
+                .willReturn(Optional.of(new HighLowGame(null, null, null)));
 
         String expectedContent = "{\"id\":null,\"name\":\"New Baker!\",\"employeeId\":null,\"specialty\":null}";
         this.mvc.perform(MockMvcRequestBuilders
@@ -47,10 +47,10 @@ public class HighLoGameControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        HiLowGame hiLowGame = new HiLowGame(null, null, null);
+        HighLowGame highLowGame = new HighLowGame(null, null, null);
         BDDMockito
-                .given(repository.save(hiLowGame))
-                .willReturn(hiLowGame);
+                .given(repository.save(highLowGame))
+                .willReturn(highLowGame);
 
         String expectedContent="{\"id\":null,\"name\":\"New Baker!\",\"employeeId\":null,\"specialty\":null}";
         this.mvc.perform(MockMvcRequestBuilders

@@ -7,18 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.List;
 @Entity
-public class HiLowGame {
+public class HighLowGame {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     Deck deck;
-    List<HiLowGame> playerList;
+    List<HighLowGame> playerList;
 
-    public HiLowGame() {
+    public HighLowGame() {
     }
 
-    public HiLowGame(Long id, Deck deck, List<HiLowGame> playerList) {
+    public HighLowGame(Long id, Deck deck, List<HighLowGame> playerList) {
         this.id = id;
         this.deck = deck;
         this.playerList = playerList;
@@ -40,15 +40,15 @@ public class HiLowGame {
         this.deck = deck;
     }
 
-    public List<HiLowGame> getPlayerList() {
+    public List<HighLowGame> getPlayerList() {
         return playerList;
     }
 
-    public void setPlayerList(List<HiLowGame> playerList) {
+    public void setPlayerList(List<HighLowGame> playerList) {
         this.playerList = playerList;
     }
 
-    public HiLoPlayer findById(Long accountId) {
+    public HighLoPlayer findById(Long accountId) {
         return null;
     }
 }
