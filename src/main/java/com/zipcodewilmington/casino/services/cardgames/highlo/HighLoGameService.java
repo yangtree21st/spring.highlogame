@@ -26,7 +26,6 @@ public class HighLoGameService extends AbstractService<HighLowGame, Long> {
         HighLowGame newGame = new HighLowGame();
         Deck newDeck = new Deck();
         newDeck.setCardList(new ArrayList<>());
-        newDeck.populate();
         newGame.setDeck(newDeck);
         newGame.setPlayerList(new ArrayList<>());
         return super.create(newGame);

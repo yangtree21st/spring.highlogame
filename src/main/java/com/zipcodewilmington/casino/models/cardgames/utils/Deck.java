@@ -9,24 +9,22 @@ import java.util.Stack;
 public class Deck {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long deckId;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Card> cardList;
+    private List<Card> cardList;
 
-    public Deck() {
-    }
-
-    public Deck(Stack<Card> cardStack) {
+    public Deck(List<Card> cardStack) {
         this.cardList = cardStack;
     }
 
-    public List<Card> getCardList() {
-        return cardList;
-    }
-
-    public void setCardList(List<Card> cardList) {
-        this.cardList = cardList;
+    public Deck() {
+        this(new Stack<>());
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                push(new Card(rank, suit));
+            }
+        }
     }
 
     public Card pop() {
@@ -47,11 +45,19 @@ public class Deck {
         return cardList.isEmpty();
     }
 
-    public void populate() {
-        for (Suit suit : Suit.values()) {
-            for (Rank rank : Rank.values()) {
-                push(new Card(rank, suit));
-            }
-        }
+    public Long getDeckId() {
+        return deckId;
+    }
+
+    public void setDeckId(Long deckId) {
+        this.deckId = deckId;
+    }
+
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
     }
 }
