@@ -31,15 +31,14 @@ public class AccountController {
 
     @GetMapping(value = "/accounts/{id}")
     public ResponseEntity<Account> show(@PathVariable Long id) {
-        Account shownAccount = service.show(id);
+        Account shownAccount = service.read(id);
         ResponseEntity<Account> response = new ResponseEntity<>(shownAccount, HttpStatus.OK);
         return response;
     }
 
     @DeleteMapping(value = "/accounts/{id}")
     public ResponseEntity<Account> delete(@PathVariable Long id) {
-        Account deletedAccount = service.show(id);
-        service.delete(id);
+        Account deletedAccount = service.delete(id);
         ResponseEntity<Account> response = new ResponseEntity<>(deletedAccount, HttpStatus.OK);
         return response;
     }
