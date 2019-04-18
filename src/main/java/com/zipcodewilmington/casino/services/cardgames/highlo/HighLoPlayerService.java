@@ -34,7 +34,6 @@ public class HighLoPlayerService {
 
     public HighLoPlayer update(Long gameId, HighLoPlayer newHiLowPlayer) {
         HighLoPlayer originalHiLowPlayer = playerRepo.findById(gameId).get();
-        originalHiLowPlayer.setName(newHiLowPlayer.getName());
         originalHiLowPlayer.setAccount(newHiLowPlayer.getAccount());
         return playerRepo.save(originalHiLowPlayer);
     }
