@@ -21,7 +21,7 @@ public class HighLoGameController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<HighLoGame> show(@PathVariable Long id) {
+    public ResponseEntity<HighLoGame> read(@PathVariable Long id) {
         return new ResponseEntity<>(service.read(id), HttpStatus.OK);
     }
 
