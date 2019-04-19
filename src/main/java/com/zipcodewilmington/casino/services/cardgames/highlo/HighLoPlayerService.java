@@ -21,3 +21,12 @@ public class HighLoPlayerService extends AbstractService<HighLoPlayer, Long> {
         return super.repository.save(originalHiLowPlayer);
     }
 }
+
+//create game player controller
+    //"/games/highlo/{gameid}/players
+    // public void addPlayer(@PathVariable Long gameId, @RequestBody List<Long> playerIds)
+    //
+    // service.addPlayers(gameId, playerId)
+
+//create game player service
+    //public void addPlayers
