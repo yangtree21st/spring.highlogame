@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-//@CrossOrigin(IPAddress)
 @RequestMapping(value = "games/highlo")
 public class HighLoGameController {
 
@@ -47,3 +46,4 @@ public class HighLoGameController {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }
+
