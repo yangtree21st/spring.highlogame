@@ -9,23 +9,55 @@ import java.util.Stack;
 public class Deck {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long deckId;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    List<Card> cardStack;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Card> cardList;
+
+    public Deck(List<Card> cardStack) {
+        this.cardList = cardStack;
+    }
 
     public Deck() {
+        this(new Stack<>());
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                push(new Card(rank, suit));
+            }
+        }
     }
 
-    public Deck(Stack<Card> cardStack) {
-        this.cardStack = cardStack;
+    public Card pop() {
+        Card firstCard = cardList.get(0);
+        cardList.remove(firstCard);
+        return firstCard;
     }
 
-    public List<Card> getCardStack() {
-        return cardStack;
+    public void push(Card card) {
+        cardList.add(card);
     }
 
-    public void setCardStack(List<Card> cardStack) {
-        this.cardStack = cardStack;
+    public Card peek() {
+        return cardList.get(0);
+    }
+
+    public Boolean isEmpty() {
+        return cardList.isEmpty();
+    }
+
+    public Long getDeckId() {
+        return deckId;
+    }
+
+    public void setDeckId(Long deckId) {
+        this.deckId = deckId;
+    }
+
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
     }
 }

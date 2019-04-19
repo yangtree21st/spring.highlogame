@@ -1,6 +1,6 @@
 package com.zipcodewilmington.casino.controllers;
 
-import com.zipcodewilmington.casino.models.cardgames.highlo.HighLowGame;
+import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoGameRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +36,7 @@ public class HighLoGameControllerTest {
         Long givenId = 1L;
         BDDMockito
                 .given(repository.findById(givenId))
-                .willReturn(Optional.of(new HighLowGame(null, null, null)));
+                .willReturn(Optional.of(new HighLoGame(null, null, null)));
 
         String expectedContent = "{\"id\":null,\"name\":\"New Baker!\",\"employeeId\":null,\"specialty\":null}";
         this.mvc.perform(MockMvcRequestBuilders
@@ -47,10 +47,10 @@ public class HighLoGameControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        HighLowGame highLowGame = new HighLowGame(null, null, null);
+        HighLoGame highLoGame = new HighLoGame(null, null, null);
         BDDMockito
-                .given(repository.save(highLowGame))
-                .willReturn(highLowGame);
+                .given(repository.save(highLoGame))
+                .willReturn(highLoGame);
 
         String expectedContent="{\"id\":null,\"name\":\"New Baker!\",\"employeeId\":null,\"specialty\":null}";
         this.mvc.perform(MockMvcRequestBuilders

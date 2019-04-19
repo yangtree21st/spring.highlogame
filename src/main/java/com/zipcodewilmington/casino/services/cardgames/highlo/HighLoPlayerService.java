@@ -1,41 +1,23 @@
 package com.zipcodewilmington.casino.services.cardgames.highlo;
 
-import com.zipcodewilmington.casino.models.cardgames.highlo.HighLowGame;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoPlayer;
-import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoGameRepository;
 import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoPlayerRepository;
+import com.zipcodewilmington.springutils.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HighLoPlayerService {
-    private HighLoGameRepository gameRepo;
-    private HighLoPlayerRepository playerRepo;
-
+public class HighLoPlayerService extends AbstractService<HighLoPlayer, Long> {
     @Autowired
-    public HighLoPlayerService(HighLoPlayerRepository playerRepo, HighLoGameRepository gameRepo) {
-        this.playerRepo = playerRepo;
-        this.gameRepo = gameRepo;
+    public HighLoPlayerService(HighLoPlayerRepository playerRepo) {
+        super(playerRepo);
     }
 
-    public HighLoPlayer create(HighLoPlayer hiLowPlayer) {
-        return playerRepo.save(hiLowPlayer);
-    }
-
-    public HighLoPlayer show (Long accountId) {
-        HighLowGame highLowGame = gameRepo.findById(accountId).get();
-        return highLowGame.findById(accountId);
-    }
-
-    public Boolean delete(Long gameId) {
-        playerRepo.deleteById(gameId);
-        return true;
-    }
-
-    public HighLoPlayer update(Long gameId, HighLoPlayer newHiLowPlayer) {
-        HighLoPlayer originalHiLowPlayer = playerRepo.findById(gameId).get();
-        originalHiLowPlayer.setName(newHiLowPlayer.getName());
-        originalHiLowPlayer.setAccount(newHiLowPlayer.getAccount());
-        return playerRepo.save(originalHiLowPlayer);
+    @Override
+    public HighLoPlayer update(Long id, HighLoPlayer newData) {
+        HighLoPlayer originalHiLowPlayer = super.repository.findById(id).get();
+        originalHiLowPlayer.setAccount(newData.getAccount());
+        originalHiLowPlayer.setHand(newData.getHand());
+        return super.repository.save(originalHiLowPlayer);
     }
 }

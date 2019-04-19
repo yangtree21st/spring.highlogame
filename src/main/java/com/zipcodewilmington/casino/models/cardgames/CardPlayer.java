@@ -10,21 +10,22 @@ import javax.persistence.*;
 public class CardPlayer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String name;
+    private Long id;
 
-    @OneToOne
-    Hand hand
-            ;
-    @OneToOne
-    Account account;
+    @OneToOne (cascade = CascadeType.ALL)
+    private Hand hand;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
 
     public CardPlayer() {
+        this(null, new Hand(), new Account());
     }
 
-    public CardPlayer(Account account, String name) {
+    public CardPlayer(Long id, Hand hand, Account account) {
+        this.id = id;
+        this.hand = hand;
         this.account = account;
-        this.name = name;
     }
 
     public Long getId() {
@@ -49,13 +50,5 @@ public class CardPlayer {
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

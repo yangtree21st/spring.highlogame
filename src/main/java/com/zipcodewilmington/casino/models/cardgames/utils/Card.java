@@ -24,9 +24,14 @@ public class Card {
         return this.suit;
     }
 
-    public int getValue() {
-        return rank.getValue();
+    public Integer getPrimaryValue() {
+        return rank.getPrimaryValue();
     }
+
+    public Integer getSecondaryValue() {
+        return rank.getPrimaryValue();
+    }
+
 
     public Long getId() {
         return id;
