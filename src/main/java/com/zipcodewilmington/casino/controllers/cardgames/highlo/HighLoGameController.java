@@ -44,5 +44,10 @@ public class HighLoGameController {
     public ResponseEntity<HighLoGame> destroy(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
+
+    @PutMapping("/{id}/deal")
+    public ResponseEntity<HighLoGame> dealCards(@PathVariable Long id) {
+        return new ResponseEntity<>(service.dealCard(id), HttpStatus.OK);
+    }
 }
 
