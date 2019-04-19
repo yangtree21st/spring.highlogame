@@ -8,8 +8,11 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private final Rank rank;
-    private final Suit suit;
+    private Rank rank;
+    private Suit suit;
+
+    public Card() {
+    }
 
     public Card(Rank rank, Suit suit) {
         this.rank = rank;

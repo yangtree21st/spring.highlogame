@@ -2,6 +2,8 @@ package com.zipcodewilmington.casino.models.cardgames.highlo;
 
 
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,10 +14,11 @@ public class HighLoGame {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Deck deck;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<HighLoPlayer> playerList;
 
     public HighLoGame() {
