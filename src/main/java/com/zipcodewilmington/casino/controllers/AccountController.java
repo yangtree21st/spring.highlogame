@@ -30,7 +30,7 @@ public class AccountController {
     }
 
     @GetMapping(value = "/accounts/{id}")
-    public ResponseEntity<Account> show(@PathVariable Long id) {
+    public ResponseEntity<Account> read(@PathVariable Long id) {
         Account shownAccount = service.read(id);
         ResponseEntity<Account> response = new ResponseEntity<>(shownAccount, HttpStatus.OK);
         return response;
