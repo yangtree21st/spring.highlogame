@@ -12,10 +12,10 @@ public class CardPlayer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     private Hand hand;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Account account;
 
     public CardPlayer() {
