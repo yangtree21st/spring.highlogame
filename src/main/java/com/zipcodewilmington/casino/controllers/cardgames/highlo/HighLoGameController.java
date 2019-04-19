@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(value = "games/highlo")
 public class HighLoGameController {
-
     private HighLoGameService service;//service is always Singleton,is a bean.
 
     @Autowired// Telling IOC to inject Beans.Dependency Injection//it updated in moc database.
@@ -26,7 +25,7 @@ public class HighLoGameController {
         return new ResponseEntity<>(service.read(id), HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping("/new")
     public ResponseEntity<HighLoGame> create(@RequestBody HighLoGame highLoGame) {
         return new ResponseEntity<>(service.create(highLoGame), HttpStatus.CREATED);
     }
