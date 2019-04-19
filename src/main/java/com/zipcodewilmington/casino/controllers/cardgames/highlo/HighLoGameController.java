@@ -25,7 +25,7 @@ public class HighLoGameController {
         return new ResponseEntity<>(service.read(id), HttpStatus.OK);
     }
 
-    @PostMapping("/new")
+    @PostMapping("/")
     public ResponseEntity<HighLoGame> create(@RequestBody HighLoGame highLoGame) {
         return new ResponseEntity<>(service.create(highLoGame), HttpStatus.CREATED);
     }

@@ -17,7 +17,7 @@ public class HighLoPlayerController {
     public HighLoPlayerController(HighLoPlayerService highLoPlayerService) {
         this.highLoPlayerService = highLoPlayerService;
     }
-    @PostMapping (name = "/new")
+    @PostMapping (name = "/")
     public ResponseEntity<HighLoPlayer> create(@RequestBody HighLoPlayer highLoPlayer) {
         return new ResponseEntity<>(highLoPlayerService.create(highLoPlayer), HttpStatus.CREATED);
     }
