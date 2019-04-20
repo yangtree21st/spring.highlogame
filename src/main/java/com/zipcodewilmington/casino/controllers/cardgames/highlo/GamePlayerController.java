@@ -1,24 +1,22 @@
 package com.zipcodewilmington.casino.controllers.cardgames.highlo;
 
-import com.zipcodewilmington.casino.services.cardgames.highlo.GamePlayerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value = "games/highlo")
 public class GamePlayerController {
-   @Autowired
-    private GamePlayerService gamePlayerService;
 
+    @Autowired
+    private GamePlayerService service;
 
-    public GamePlayerController(GamePlayerService gamePlayerService) {
-        this.gamePlayerService = gamePlayerService;
+    @PostMapping(value = "/{gameId}/players")
+    public void addPlayers(@PathVariable long gameId, @RequestBody List<Long> playerIds) {
+        service.addPlayers(gameId, playerIds);
+
     }
     @PostMapping
     public void addPlayers(@PathVariable Long gameId, @RequestBody  List<Long>playerIds){

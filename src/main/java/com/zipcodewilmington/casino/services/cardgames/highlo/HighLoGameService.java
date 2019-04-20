@@ -1,6 +1,7 @@
 package com.zipcodewilmington.casino.services.cardgames.highlo;
 
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
+import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoPlayer;
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
 import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoGameRepository;
 import com.zipcodewilmington.springutils.AbstractService;
@@ -27,5 +28,19 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
 
     public HighLoGame create() {
         return super.create(new HighLoGame());
+    }
+
+    public HighLoGame dealCard(Long id) {
+        HighLoGame game = repository.findById(id).get();
+
+        Deck deck = game.getDeck();
+
+        for(HighLoPlayer player : game.getPlayerList()) {
+            player.getHand().addCard(deck.pop());
+        }
+
+        repository.save(game);
+
+        return game;
     }
 }
