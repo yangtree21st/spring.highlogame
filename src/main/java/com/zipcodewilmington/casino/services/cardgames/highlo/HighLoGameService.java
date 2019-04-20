@@ -2,6 +2,7 @@ package com.zipcodewilmington.casino.services.cardgames.highlo;
 
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoPlayer;
+import com.zipcodewilmington.casino.models.cardgames.utils.Card;
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
 import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoGameRepository;
 import com.zipcodewilmington.springutils.AbstractService;
@@ -43,4 +44,59 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
 
         return game;
     }
+
+    /**
+     * This method compares the first card and second card value
+     *
+     * @param firstCard It takes the value of the firstCard
+     * @param secondCard It takes the value of the secondCard
+     * @return true if the second card is less than the first one
+     */
+
+    public boolean isLess(Long id, Card firstCard, Card secondCard) {
+        HighLoGame game = repository.findById(id).get();
+
+        for(HighLoPlayer p: game.getPlayerList()){
+            while(p.getHand() != null && p.getHand().getCardList().size() == 2)
+           firstCard = p.getHand().getCardList().get(0);
+           secondCard = p.getHand().getCardList().get(1);
+        }
+
+        Integer firstCardValue = firstCard.getRank().getPrimaryValue();
+        Integer secondCardValue = secondCard.getRank().getPrimaryValue();
+
+        if (secondCardValue < firstCardValue) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * This method compares the first and second card values
+     *
+     * @param firstCard it takes the firstCard value
+     * @param secondCard    it takes the secondCard value
+     * @return true if the secondCard value is more than the firstCard value
+     */
+
+    public boolean isMore(Long id, Card firstCard, Card secondCard) {
+        return !isLess(id, firstCard, secondCard);
+    }
+
+    public void winOrLose(Long id, String input){
+        /*
+        for(Player p : Game){
+        if(choiceMethod equals High && isMore(id,firstCard,secondCard) ||
+            (choiceMethod equals Low && isLess(id,firstCard,secondCard)){
+            sout("Winner");
+            } else {
+            sout("Loser");
+            }
+            clear Hand;
+            }
+
+           */
+
+    }
+
 }
