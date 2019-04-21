@@ -36,4 +36,8 @@ public class Hand {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void addCard(Card card) {
+        cardList.add(card);
+    }
 }

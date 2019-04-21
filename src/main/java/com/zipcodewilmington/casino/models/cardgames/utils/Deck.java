@@ -1,5 +1,8 @@
 package com.zipcodewilmington.casino.models.cardgames.utils;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Stack;
@@ -11,7 +14,8 @@ public class Deck {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long deckId;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Card> cardList;
 
     public Deck(List<Card> cardStack) {
