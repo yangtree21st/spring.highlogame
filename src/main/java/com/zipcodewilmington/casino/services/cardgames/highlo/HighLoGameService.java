@@ -10,10 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 @Service
 public class HighLoGameService extends AbstractService<HighLoGame, Long> {
+
+
     @Autowired
     public HighLoGameService(HighLoGameRepository repository) {
         super(repository);
@@ -83,7 +87,7 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
         return !isLess(id, firstCard, secondCard);
     }
 
-    public void winOrLose(Long id, String input){
+    public void winOrLose(Long id, String input) {
         /*
         for(Player p : Game){
         if(choiceMethod equals High && isMore(id,firstCard,secondCard) ||
@@ -96,6 +100,21 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
             }
 
            */
+
+    }
+
+    public void resultOfGame( Long id, Card firstCard, Card secondCard){
+        HighLoGame game = repository.findById(id).get();
+        System.out.println("HI or LO: Choose one");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        if(userInput.toUpperCase().equals("HI") ||userInput.toUpperCase().equals("LO") && isLess(id,firstCard, secondCard)){
+            System.out.println("You win! Congratulations!");
+        } else {
+            isMore(id, firstCard, secondCard);
+            System.out.println("Whomps. You Lose");
+        }
 
     }
 
