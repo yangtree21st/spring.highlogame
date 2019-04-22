@@ -4,15 +4,13 @@ import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoPlayer;
 import com.zipcodewilmington.casino.models.cardgames.utils.Card;
 import com.zipcodewilmington.casino.models.cardgames.utils.Deck;
+import com.zipcodewilmington.casino.models.cardgames.utils.HighLoResult;
 import com.zipcodewilmington.casino.repositories.cardgames.highlo.HighLoGameRepository;
 import com.zipcodewilmington.springutils.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 @Service
 public class HighLoGameService extends AbstractService<HighLoGame, Long> {
@@ -57,69 +55,106 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
      * @return true if the second card is less than the first one
      */
 
-    public boolean isLess(Long id, Card firstCard, Card secondCard) {
-        HighLoGame game = repository.findById(id).get();
-
-        for(HighLoPlayer p: game.getPlayerList()){
-            while(p.getHand() != null && p.getHand().getCardList().size() == 2)
-           firstCard = p.getHand().getCardList().get(0);
-           secondCard = p.getHand().getCardList().get(1);
-        }
-
-        Integer firstCardValue = firstCard.getRank().getPrimaryValue();
-        Integer secondCardValue = secondCard.getRank().getPrimaryValue();
-
-        if (secondCardValue < firstCardValue) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * This method compares the first and second card values
-     *
-     * @param firstCard it takes the firstCard value
-     * @param secondCard    it takes the secondCard value
-     * @return true if the secondCard value is more than the firstCard value
-     */
-
-    public boolean isMore(Long id, Card firstCard, Card secondCard) {
-        return !isLess(id, firstCard, secondCard);
-    }
-
-    public void winOrLose(Long id, String input) {
-        /*
-        for(Player p : Game){
-        if(choiceMethod equals High && isMore(id,firstCard,secondCard) ||
-            (choiceMethod equals Low && isLess(id,firstCard,secondCard)){
-            sout("Winner");
-            } else {
-            sout("Loser");
-            }
-            clear Hand;
-            }
-
-           */
-
-    }
-
-    public void resultOfGame( Long id, Card firstCard, Card secondCard){
-        HighLoGame game = repository.findById(id).get();
-        System.out.println("HI or LO: Choose one");
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
+    public boolean isLess(Card firstCard, Card secondCard) {
+//        HighLoGame game = repository.findById(id).get();
+//
+//        for(HighLoPlayer p: game.getPlayerList()){
+//            while(p.getHand() != null && p.getHand().getCardList().size() == 2)
+//           firstCard = p.getHand().getCardList().get(0);
+//           secondCard = p.getHand().getCardList().get(1);
+//        }
 
         Integer firstCardValue = firstCard.getRank().getPrimaryValue();
         Integer secondCardValue = secondCard.getRank().getPrimaryValue();
 
+        return firstCardValue < secondCardValue;
+    }
 
-        if(userInput.toUpperCase().equals("HI") ||userInput.toUpperCase().equals("LO") && isLess(id,firstCard, secondCard)){
-            System.out.println("You win! Congratulations!");
+
+
+    public boolean isMore(Card firstCard, Card secondCard) {
+        return !isLess(firstCard, secondCard);
+    }
+//
+//    public void winOrLose(Long id, String input) {
+//        /*
+//        for(Player p : Game){
+//        if(choiceMethod equals High && isMore(id,firstCard,secondCard) ||
+//            (choiceMethod equals Low && isLess(id,firstCard,secondCard)){
+//            sout("Winner");
+//            } else {
+//            sout("Loser");
+//            }
+//            clear Hand;
+//            }
+//
+//           */
+//
+//    }
+//
+//    public void resultOfGame( Long id, Card firstCard, Card secondCard){
+//        HighLoGame game = repository.findById(id).get();
+//        System.out.println("HI or LO: Choose one");
+//        Scanner scanner = new Scanner(System.in);
+//        String userInput = scanner.nextLine();
+//
+//        Integer firstCardValue = firstCard.getRank().getPrimaryValue();
+//        Integer secondCardValue = secondCard.getRank().getPrimaryValue();
+//
+//
+//        if(userInput.toUpperCase().equals("HI") ||userInput.toUpperCase().equals("LO") && isLess(id,firstCard, secondCard)){
+//            System.out.println("You win! Congratulations!");
+//        } else {
+//            isMore(id, firstCard, secondCard);
+//            System.out.println("Whomps. You Lose");
+//        }
+//
+//    }
+
+    public HighLoResult makeChoice(Long gameId, Long playerId, String choice) {
+        HighLoGame game = repository.findById(gameId).get();
+        HighLoPlayer player = findPlayer(playerId, game);
+
+        Card nextCard = game.getDeck().pop();
+
+        String resultString = getResultString(choice, player, nextCard);
+
+        HighLoResult result = new HighLoResult(nextCard);
+        result.addResult(player, resultString);
+
+        return result;
+    }
+
+    private String getResultString(String choice, HighLoPlayer player, Card nextCard) {
+        List<Card> hand = player.getHand().getCardList();
+        Card playerCard = hand.get(hand.size() - 1);
+
+        String resultString = null;
+        if (playerCard.equals(nextCard)) {
+            resultString = "Draw";
+        } else if (isLess(playerCard, nextCard) && choice.equalsIgnoreCase("HI")) {
+            resultString = "You win! Congratulations!";
+        } else if (isLess(playerCard, nextCard) && choice.equalsIgnoreCase("LO")) {
+            resultString = "Whomps. You Lose";
+        } else if (isMore(playerCard, nextCard) && choice.equalsIgnoreCase("HI")) {
+            resultString = "Whomps. You Lose";
         } else {
-            isMore(id, firstCard, secondCard);
-            System.out.println("Whomps. You Lose");
+            resultString = "You win! Congratulations!";
         }
+        return resultString;
+    }
 
+    private HighLoPlayer findPlayer(Long playerId, HighLoGame game) {
+        List<HighLoPlayer> players = game.getPlayerList();
+        HighLoPlayer player = null;
+
+        for(HighLoPlayer p : players) {
+            if (playerId.equals(p.getId())) {
+                player = p;
+                break;
+            }
+        }
+        return player;
     }
 
 }

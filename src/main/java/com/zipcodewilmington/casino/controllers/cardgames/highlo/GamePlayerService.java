@@ -20,12 +20,12 @@ public class GamePlayerService {
 
 
 
-    public void addPlayers(Long gameId, List<Long> playerIds) {
+    public HighLoGame addPlayers(Long gameId, List<Long> playerIds) {
         HighLoGame game = gameRepository.findById(gameId).get();
         List<HighLoPlayer> list = fetchPlayers(playerIds);
         game.setPlayerList(list);
 
-        gameRepository.save(game);
+        return gameRepository.save(game);
 
     }
 
