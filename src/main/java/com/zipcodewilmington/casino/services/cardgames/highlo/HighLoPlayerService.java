@@ -20,6 +20,7 @@ public class HighLoPlayerService extends AbstractService<HighLoPlayer, Long> {
         originalHiLowPlayer.setHand(newData.getHand());
         return super.repository.save(originalHiLowPlayer);
     }
+
 }
 
 //create game player controller
@@ -30,3 +31,17 @@ public class HighLoPlayerService extends AbstractService<HighLoPlayer, Long> {
 
 //create game player service
     //public void addPlayers
+
+//    private String playerChoice;
+//
+//    public HighLoPlayer makeChoice(HighLoPlayer highLoPlayer ){
+//        this.playerChoice = Casino.console.getStringInput("Enter 'H' for Higher,'L' for Low");
+//    }
+//
+//    public void winning() {
+//        if (playerChoice.equalsIgnoreCase("H") && isMore(currentCard, nextCard) ||
+//                (playerChoice.equalsIgnoreCase("L") && isLess(currentCard, nextCard))) {
+//            Casino.console.println("You Win");
+//            giveWinningsToPlayer(winnings);
+//        } else Casino.console.println("You Lose");
+//    }

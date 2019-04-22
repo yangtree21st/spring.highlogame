@@ -1,16 +1,19 @@
 package com.zipcodewilmington.casino.controllers.cardgames.highlo;
 
+import com.zipcodewilmington.casino.models.Account;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.services.cardgames.highlo.HighLoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.smartcardio.Card;
 
-@Controller
-@RequestMapping(value = "games/highlo")
+@RestController
+@RequestMapping(value = "/games/highlo")
 public class HighLoGameController {
     private HighLoGameService service;//service is always Singleton,is a bean.
 
@@ -19,6 +22,12 @@ public class HighLoGameController {
         this.service = service;
     }
 
+    @PostMapping("/{id}")
+    public String joinGame(@RequestBody Account account, @PathVariable Long id){
+        //save accoujnt to game wtih this id
+        //return
+        return "Welcome to play HighLo, " + account.getName() + ". Your game id is: " + id;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<HighLoGame> read(@PathVariable Long id) {
@@ -45,9 +54,17 @@ public class HighLoGameController {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/deal")
-    public ResponseEntity<HighLoGame> dealCards(@PathVariable Long id) {
-        return new ResponseEntity<>(service.dealCard(id), HttpStatus.OK);
+//    @PutMapping("/{id}/deal")
+//    public ResponseEntity<HighLoGame> dealCards(@PathVariable Long id) {
+//        return new ResponseEntity<>(service.dealCard(id), HttpStatus.OK);
+//    }
+
+    @PostMapping("/{id}/makeChoice")
+    public ResponseEntity<Card> makeChoice(@PathVariable Long id, @RequestBody UserChoice user) {
+
+        return new ResponseEntity<Card>((MultiValueMap<String, String>) service.dealCard(id),HttpStatus.OK);
     }
+
+
 }
 
