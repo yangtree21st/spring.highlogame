@@ -32,8 +32,8 @@ public class GamePlayerService {
         for(HighLoPlayer p: players){
             list.add(p);
         }
-        game.setPlayersList(list);
+
     }
 
-        gameRepository.save
+
 }
