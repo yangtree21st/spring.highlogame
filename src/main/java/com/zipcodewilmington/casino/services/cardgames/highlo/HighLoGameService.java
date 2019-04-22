@@ -109,6 +109,10 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
 
+        Integer firstCardValue = firstCard.getRank().getPrimaryValue();
+        Integer secondCardValue = secondCard.getRank().getPrimaryValue();
+
+
         if(userInput.toUpperCase().equals("HI") ||userInput.toUpperCase().equals("LO") && isLess(id,firstCard, secondCard)){
             System.out.println("You win! Congratulations!");
         } else {
