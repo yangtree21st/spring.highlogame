@@ -1,5 +1,6 @@
 package com.zipcodewilmington.casino;
 
+import com.zipcodewilmington.casino.controllers.cardgames.highlo.PlayerChoice;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoPlayer;
 import com.zipcodewilmington.casino.models.cardgames.utils.*;
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +44,8 @@ public class HighLoGameServiceTest {
         when(repository.findById(gameId)).thenReturn(optionalGame);
 
         // when
-        HighLoResult actual = service.makeChoice(gameId, player1Id, "HI");
+        PlayerChoice choice = new PlayerChoice(player1Id, "HI");
+        HighLoResult actual = service.makeChoice(gameId, choice);
 
         String expected = "You win! Congratulations!";
         Assert.assertEquals(expected, actual.getResult(player));
@@ -62,7 +65,8 @@ public class HighLoGameServiceTest {
         when(repository.findById(gameId)).thenReturn(optionalGame);
 
         // when
-        HighLoResult actual = service.makeChoice(gameId, player1Id, "LO");
+        PlayerChoice choice = new PlayerChoice(player1Id, "LO");
+        HighLoResult actual = service.makeChoice(gameId, choice);
 
         String expected = "You win! Congratulations!";
         Assert.assertEquals(expected, actual.getResult(player));
@@ -82,7 +86,8 @@ public class HighLoGameServiceTest {
         when(repository.findById(gameId)).thenReturn(optionalGame);
 
         // when
-        HighLoResult actual = service.makeChoice(gameId, player1Id, "HI");
+        PlayerChoice choice = new PlayerChoice(player1Id, "HI");
+        HighLoResult actual = service.makeChoice(gameId, choice);
 
         String expected = "Whomps. You Lose";
         Assert.assertEquals(expected, actual.getResult(player));
@@ -102,7 +107,8 @@ public class HighLoGameServiceTest {
         when(repository.findById(gameId)).thenReturn(optionalGame);
 
         // when
-        HighLoResult actual = service.makeChoice(gameId, player1Id, "LO");
+        PlayerChoice choice = new PlayerChoice(player1Id, "LO");
+        HighLoResult actual = service.makeChoice(gameId, choice);
 
         String expected = "Whomps. You Lose";
         Assert.assertEquals(expected, actual.getResult(player));
@@ -122,7 +128,8 @@ public class HighLoGameServiceTest {
         when(repository.findById(gameId)).thenReturn(optionalGame);
 
         // when
-        HighLoResult actual = service.makeChoice(gameId, player1Id, "LO");
+        PlayerChoice choice = new PlayerChoice(player1Id, "LO");
+        HighLoResult actual = service.makeChoice(gameId, choice);
 
         String expected = "Draw";
         Assert.assertEquals(expected, actual.getResult(player));

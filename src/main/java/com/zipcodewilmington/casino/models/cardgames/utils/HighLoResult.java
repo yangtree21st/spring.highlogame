@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class HighLoResult {
     private Card flippedCard;
-    private Map<HighLoPlayer, String> result;
+    private Map<Long, String> result;
 
     public HighLoResult() {
         result = new HashMap<>();
@@ -27,19 +27,19 @@ public class HighLoResult {
         this.flippedCard = flippedCard;
     }
 
-    public Map<HighLoPlayer, String> getResult() {
+    public Map<Long, String> getResult() {
         return result;
     }
 
-    public void setResult(Map<HighLoPlayer, String> result) {
+    public void setResult(Map<Long, String> result) {
         this.result = result;
     }
 
     public void addResult(HighLoPlayer player, String resultString) {
-        this.result.put(player, resultString);
+        this.result.put(player.getId(), resultString);
     }
 
     public String getResult(HighLoPlayer player) {
-        return result.get(player);
+        return result.get(player.getId());
     }
 }

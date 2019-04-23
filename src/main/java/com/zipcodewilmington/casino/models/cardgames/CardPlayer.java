@@ -54,6 +54,14 @@ public class CardPlayer {
         this.account = account;
     }
 
+    public void setName(String name){
+        this.account.setName(name);
+    }
+
+    public String getName(){
+        return account.getName();
+    }
+
     @Override
     public String toString() {
 

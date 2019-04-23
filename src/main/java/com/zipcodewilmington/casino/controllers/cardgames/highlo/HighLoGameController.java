@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -22,15 +24,6 @@ public class HighLoGameController {
     @Autowired// Telling IOC to inject Beans.Dependency Injection//it updated in moc database.
     public HighLoGameController(HighLoGameService service) {
         this.service = service;
-    }
-
-
-    @PutMapping("/{id}/choice")
-    public ResponseEntity<HighLoResult> makeChoice(@PathVariable Long id, @RequestBody Map<String, Object> request) {
-        long playerId = (Integer) request.get("playerId");
-        String choice = (String) request.get("choice");
-
-        return new ResponseEntity<>(service.makeChoice(id, playerId, choice), HttpStatus.OK);
     }
 
 
@@ -64,6 +57,10 @@ public class HighLoGameController {
         return new ResponseEntity<>(service.dealCard(id), HttpStatus.OK);
     }
 
+    @PutMapping("/{id}/choice")
+    public ResponseEntity<HighLoResult> makeChoice(@PathVariable Long id, @RequestBody PlayerChoice[] choices) {
+        return new ResponseEntity<>(service.makeChoice(id, choices), HttpStatus.OK);
+    }
 
 }
 
