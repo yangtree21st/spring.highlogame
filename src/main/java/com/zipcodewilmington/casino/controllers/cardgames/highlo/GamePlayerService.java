@@ -38,4 +38,12 @@ public class GamePlayerService {
         }
         return list;
     }
+
+    public HighLoGame createPlayer(long gameId, HighLoPlayer player) {
+        HighLoGame game = gameRepository.findById(gameId).get();
+        game.addPlayer(player);
+        gameRepository.save(game);
+
+        return game;
+    }
 }

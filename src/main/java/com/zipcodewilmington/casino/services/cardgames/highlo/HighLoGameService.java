@@ -1,5 +1,6 @@
 package com.zipcodewilmington.casino.services.cardgames.highlo;
 
+import com.zipcodewilmington.casino.controllers.cardgames.highlo.PlayerChoice;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoPlayer;
 import com.zipcodewilmington.casino.models.cardgames.utils.Card;
@@ -10,7 +11,10 @@ import com.zipcodewilmington.springutils.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class HighLoGameService extends AbstractService<HighLoGame, Long> {
@@ -111,17 +115,22 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
 //
 //    }
 
-    public HighLoResult makeChoice(Long gameId, Long playerId, String choice) {
+    public HighLoResult makeChoice(Long gameId, PlayerChoice... choices) {
         HighLoGame game = repository.findById(gameId).get();
-        HighLoPlayer player = findPlayer(playerId, game);
-
+        game.getDeck().shuffle();
         Card nextCard = game.getDeck().pop();
-
-        String resultString = getResultString(choice, player, nextCard);
+        Map<Long, String> choiceMap = Arrays.stream(choices)
+                                        .collect(Collectors.toMap(PlayerChoice::getPlayerId,
+                                                                  PlayerChoice::getChoice));
 
         HighLoResult result = new HighLoResult(nextCard);
-        result.addResult(player, resultString);
+        for(HighLoPlayer player : game.getPlayerList()){
+            String playerChoice = choiceMap.get(player.getId());
+            String resultString = getResultString(playerChoice, player, nextCard);
+            result.addResult(player, resultString);
+        }
 
+        repository.save(game);
         return result;
     }
 
@@ -132,29 +141,16 @@ public class HighLoGameService extends AbstractService<HighLoGame, Long> {
         String resultString = null;
         if (playerCard.equals(nextCard)) {
             resultString = "Draw";
-        } else if (isLess(playerCard, nextCard) && choice.equalsIgnoreCase("HI")) {
+        } else if (isLess(playerCard, nextCard) && "HI".equalsIgnoreCase(choice)) {
             resultString = "You win! Congratulations!";
-        } else if (isLess(playerCard, nextCard) && choice.equalsIgnoreCase("LO")) {
+        } else if (isLess(playerCard, nextCard) && "LO".equalsIgnoreCase(choice)) {
             resultString = "Whomps. You Lose";
-        } else if (isMore(playerCard, nextCard) && choice.equalsIgnoreCase("HI")) {
+        } else if (isMore(playerCard, nextCard) && "HI".equalsIgnoreCase(choice)) {
             resultString = "Whomps. You Lose";
         } else {
             resultString = "You win! Congratulations!";
         }
         return resultString;
-    }
-
-    private HighLoPlayer findPlayer(Long playerId, HighLoGame game) {
-        List<HighLoPlayer> players = game.getPlayerList();
-        HighLoPlayer player = null;
-
-        for(HighLoPlayer p : players) {
-            if (playerId.equals(p.getId())) {
-                player = p;
-                break;
-            }
-        }
-        return player;
     }
 
 }
