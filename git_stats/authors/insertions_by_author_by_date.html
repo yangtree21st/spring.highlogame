@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GitStats - spring.highlogame</title>
+<meta charset='utf-8'>
+<link href='../assets/bootstrap/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<style>
+body { padding-top: 60px; }
+</style>
+<link href='../assets/bootstrap/css/bootstrap-responsive.min.css' rel='stylesheet' type='text/css'>
+<script src='../assets/jquery.min.js' type='text/javascript'></script>
+<script src='../assets/bootstrap/js/bootstrap.min.js' type='text/javascript'></script>
+<script src='../assets/highstock.js' type='text/javascript'></script>
+<script src='../assets/exporting.js' type='text/javascript'></script>
+<script src='../assets/export-csv.js' type='text/javascript'></script>
+</head>
+<body>
+<div class='navbar navbar-fixed-top'>
+<div class='navbar-inner'>
+<div class='container'>
+<a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+</a>
+<a class='brand' href='../index.html'>GitStats - spring.highlogame</a>
+<div class='nav-collapse collapse'>
+<ul class='nav'>
+<li class=''>
+<a href='../general.html'>General</a>
+</li>
+<li class=''>
+<a href='../activity/by_date.html'>Activity</a>
+</li>
+<li class='active'>
+<a href='best_authors.html'>Authors</a>
+</li>
+<li class=''>
+<a href='../files/by_date.html'>Files</a>
+</li>
+<li class=''>
+<a href='../lines/by_date.html'>Lines</a>
+</li>
+<li class=''>
+<a href='../comments/by_date.html'>Comments</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class='container'>
+<div class='tabbable tabs-left'>
+<ul class='nav nav-tabs'>
+<li class=''>
+<a href='best_authors.html'>Best authors</a>
+</li>
+<li class=''>
+<a href='commits_sum_by_author_by_date.html'>Commits sum by author by date</a>
+</li>
+<li class=''>
+<a href='changed_lines_by_author_by_date.html'>Changed lines by author by date</a>
+</li>
+<li class='active'>
+<a href='insertions_by_author_by_date.html'>Lines added by author by date</a>
+</li>
+<li class=''>
+<a href='deletions_by_author_by_date.html'>Lines deleted by author by date</a>
+</li>
+</ul>
+<div class='tab-content'>
+<div class='tab-pane active'>
+<div class='page-header'>
+<h1 class='pagination-centered'>Lines added by author by date</h1>
+</div>
+                <script type="text/javascript">
+        (function() {
+
+          var onload = window.onload;
+          window.onload = function(){
+            if (typeof onload == "function") onload();
+                    var options = { "title": { "text": "" },"legend": { "enabled": true,"layout": "vertical","backgroundColor": "#FFFFFF","align": "left","verticalAlign": "top","x": 100,"y": 70,"floating": true,"shadow": true },"xAxis": { "title": { "text": null } },"yAxis": { "title": { "text": "Lines" },"labels": {  } },"tooltip": { "enabled": true },"credits": { "enabled": false },"plotOptions": { "areaspline": {  } },"chart": { "defaultSeriesType": "line","renderTo": "charts.insertions_by_author_by_date" },"subtitle": {  },"series": [{ "name": "yang shu","type": "spline","data": [ [ 1555718400000,0 ],[ 1555721784000,0 ],[ 1555804800000,0 ],[ 1555939502000,146 ],[ 1555977600000,146 ],[ 1556118120000,146 ],[ 1556150400000,146 ],[ 1556236800000,146 ],[ 1556323200000,146 ],[ 1556409600000,146 ],[ 1556496000000,146 ],[ 1556582400000,146 ],[ 1556668800000,146 ],[ 1556755200000,146 ],[ 1556841600000,146 ],[ 1556982423000,19778 ],[ 1556982503000,19778 ] ] },{ "name": "Leon Hunter","type": "spline","data": [ [ 1555611650000,3 ],[ 1555612804000,116 ],[ 1555612814000,116 ],[ 1555612881000,414 ],[ 1555612993000,931 ],[ 1555613108000,974 ],[ 1555613254000,1724 ],[ 1555614188000,1792 ],[ 1555614347000,1823 ],[ 1555616432000,1858 ],[ 1555616699000,1868 ],[ 1555618091000,1930 ],[ 1555625725000,1954 ],[ 1555625826000,1959 ],[ 1555625861000,2045 ],[ 1555626045000,2050 ],[ 1555626715000,2056 ],[ 1555626774000,2059 ],[ 1555626930000,2062 ],[ 1555626967000,2064 ],[ 1555627318000,2065 ],[ 1555627493000,2068 ],[ 1555627780000,2078 ],[ 1555627867000,2080 ],[ 1555627885000,2082 ],[ 1555631847000,2083 ],[ 1555631851000,2084 ],[ 1555631924000,2086 ],[ 1555632255000,2118 ],[ 1555632314000,2119 ],[ 1555632410000,2126 ],[ 1555632502000,2128 ],[ 1555632583000,2129 ],[ 1555632782000,2131 ] ] },{ "name": "Leah","type": "spline","data": [ [ 1555610911000,1113 ],[ 1555698861000,1115 ],[ 1555704392000,1197 ],[ 1555718400000,1197 ],[ 1555874660000,1197 ],[ 1555879878000,1217 ],[ 1555937587000,1230 ] ] },{ "name": "Nhu Nguyen","type": "spline","data": [ [ 1555705524000,75 ],[ 1555706133000,99 ],[ 1555718400000,99 ],[ 1555804800000,99 ],[ 1555961978000,426 ],[ 1556054646000,556 ] ] },{ "name": "Eric Jefferson","type": "spline","data": [ [ 1555802793000,56 ] ] }] };
+        
+        window.chart_charts.insertions_by_author_by_date = new Highcharts.StockChart(options);
+
+          };
+                })()
+        </script>
+
+<div id="charts.insertions_by_author_by_date"></div>
+<small>
+<center>5 best authors shown</center>
+</small>
+</div>
+</div>
+</div>
+
+
+</div>
+</body>
+</html>
