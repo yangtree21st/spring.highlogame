@@ -3,6 +3,7 @@ package com.zipcodewilmington.casino.controllers.cardgames.highlo;
 
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoGame;
 import com.zipcodewilmington.casino.models.cardgames.highlo.HighLoPlayer;
+import com.zipcodewilmington.casino.services.cardgames.highlo.GamePlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
